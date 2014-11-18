@@ -1,0 +1,52 @@
+.flowWin
+{
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:350px;
+	bottom:0px;
+	border: 1px solid black;
+}
+.rightPanel
+{
+	padding-top:20px;
+	padding-left:10px;
+	right:0px;
+	position:absolute;
+	bottom:0px;
+	top:200px;
+	width:340px;
+	border:1px solid black;
+}
+.preview
+{
+	right:0px;
+	position:absolute;
+	top:0px;
+	overflow:hidden;
+	width:350px;
+	height:200px;
+	border:1px solid black;
+	cursor:pointer;
+}
+
+.flow_obj
+{
+	right:0px;
+	cursor:pointer;
+	width:160px;
+	display:inline-block
+}
+
+.selected
+{
+	background:#cccccc;
+}
+.settings
+{
+	margin-bottom:10px;
+}
+.colorPicker
+{
+	display:none;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Flow Chart</title>
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/flowchart.css"></link>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="lib/test_db.js"></script>
+	<script src="lib/test_controller.js"></script>
+</head>
+<body>
+	<div class="container-fluid" ng-app="test_controller" ng-controller="dataHandler as data">
+		<div class="row">
+		<div class="col-sm-8 col-md-8 col-lg-8">
+			<h1>Issues</h1>
+			<p>List of avaible issues</p>
+			<table id="issueList" class="table table-bordered table-hover">
+				<thead><tr><th>ID</th><th>Name</th></tr></thead>
+				<tbody>
+				<tr ng-repeat="x in data.arr" ng-cloak style="cursor:pointer" onclick="$('.active').removeClass('active');$(this).addClass('active')" ng-click="data.showData(x.id)"><td>{{x.id}}</td><td>{{x.name}}<button ng-click="data.remove(x.id)" class="pull-right btn btn-link"><span class="glyphicon glyphicon-remove"></span></button></td></tr>
+				</tbody>
+			</table>
+			<form role="form"><button ng-click="data.load()">Reload</button><button class="col-sm-offset-1" ng-click="data.reset()">Add new issue</button></form>
+		</div>
+		<div class="col-sm-4 col-md-4 col-lg-4">
+			<h1>Add Issue</h1>
+			<form class="form-horizontal" role="form">
+			  <div class="form-group">
+				<label class="control-label col-sm-2" for="name">Name:</label>
+				<div class="col-sm-10">
+				  <input type="text" class="form-control" id="name" ng-model="data.name" placeholder="Enter name of the new issue"/>
+				  <span ng-show="data.error" class="glyphicon glyphicon-remove form-control-feedback"></span>
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label class="control-label col-xs-8 col-sm-8 col-md-6 col-lg-2" ng-model="desc" for="desc">Description:</label>
+				<div class="col-xs-8 col-sm-8 col-md-6 col-lg-10"> 
+				  <textarea class="form-control" rows="5" id="desc" ng-model="data.desc" placeholder="Description..."></textarea>
+				  <span ng-show="data.error" class="glyphicon glyphicon-remove form-control-feedback"></span>
+				</div>
+			  </div>
+			  <div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+				  <div class="checkbox">
+					<label><input type="checkbox" ng-model="data.done"/>Completed</label>
+					<input type="hidden" ng-model="data.id"/>
+				  </div>
+				</div>
+			  </div>
+			  <div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-4">
+				  <button ng-show="!data.id" ng-click="data.addNew()" class="btn btn-default">Add issue</button>
+				  <button ng-show="data.id" type="submit" ng-click="data.saveIssue()" class="btn btn-default">Save issue</button>
+				</div>
+			  </div>
+			</form>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
